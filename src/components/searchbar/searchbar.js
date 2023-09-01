@@ -1,26 +1,23 @@
 import React from "react";
-import { Component } from "react";
 import toast from 'react-hot-toast';
 import {Header, Form, Input, Button} from './searchbar.styled'
 
-export class Searchbar extends Component {
-  
+const Searchbar = (props) =>{
 
-  handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
     if (event.target.elements.query.value.trim() === "") {
       toast.error('Please enter a search term!');
       return;
     }
     const newQuery = event.target.elements.query.value;
-    this.props.onSumbit(newQuery)
+    props.onSubmit(newQuery)
     event.target.reset();
   };
 
-render() {
-  return(
+  return (
     <Header>
-<Form onSubmit={this.handleSubmit}>
+<Form onSubmit={handleSubmit}>
 <Button type="submit">Search
 </Button>
 
@@ -33,6 +30,8 @@ render() {
 />
 </Form>
 </Header>
-);
+  );
 };
-};
+
+
+export default Searchbar;
